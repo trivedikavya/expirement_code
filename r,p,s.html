@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <title>Rock, Paper, Scissors Game</title>
+
+  <style>
+
+    .button {
+
+      font-size: 16px;
+
+      margin: 10px;
+
+      padding: 10px 20px;
+
+      cursor: pointer;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <h1>Rock, Paper, Scissors Game</h1>
+
+  <button class="button" id="rock">Rock</button>
+
+  <button class="button" id="paper">Paper</button>
+
+  <button class="button" id="scissors">Scissors</button>
+
+  <div id="result"></div>
+
+
+  <script>
+
+    const choices = ["rock", "paper", "scissors"];
+
+    const buttons = document.querySelectorAll(".button");
+
+    const resultDiv = document.getElementById("result");
+
+
+    function computerPlay() {
+
+      return choices[Math.floor(Math.random() * 3)];
+
+    }
+
+
+    function playRound(playerSelection, computerSelection) {
+
+      if (playerSelection === computerSelection) {
+
+        return "It's a tie!";
+
+      } else if (
+
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+
+        (playerSelection === "paper" && computerSelection === "rock") ||
+
+        (playerSelection === "scissors" && computerSelection === "paper")
+
+      ) {
+
+        return "You win!";
+
+      } else {
+
+        return "You lose!";
+
+      }
+
+    }
+
+
+    buttons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        const playerChoice = button.id;
+
+        const computerChoice = computerPlay();
+
+        const result = playRound(playerChoice, computerChoice);
+
+        resultDiv.textContent = `You chose ${playerChoice}, computer chose ${computerChoice}. ${result}`;
+
+      });
+
+    });
+
+  </script>
+
+</body>
+
+</html>
