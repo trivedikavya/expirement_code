@@ -1,0 +1,41 @@
+h part
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Cream Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="menu">
+        <div class="item">
+            <img src="chocolate.jpg" alt="Chocolate Ice Cream" class="product-photo">
+            <div class="product-info">
+                <h2>Chocolate Ice Cream</h2>
+                <div class="quantity-selector">
+                    <button class="decrement" onclick="updateQuantity('chocolate-quantity', -1)">&#x1f5d1;</button>
+                    <input type="number" id="chocolate-quantity" min="0" value="0" readonly>
+                    <button class="increment" onclick="updateQuantity('chocolate-quantity', 1)">+</button>
+                </div>
+                <p class="price">₹200.00</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="blackcurrent.jpg" alt="Black Current Ice Cream" class="product-photo">
+            <div class="product-info">
+                <h2>Black Current Ice Cream</h2>
+                <div class="quantity-selector">
+                    <button class="decrement" onclick="updateQuantity('blackcurrent-quantity', -1)">&#x1f5d1;</button>
+                    <input type="number" id="blackcurrent-quantity" min="0" value="0" readonly>
+                    <button class="increment" onclick="updateQuantity('blackcurrent-quantity', 1)">+</button>
+                </div>
+                <p class="price">₹250.00</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
