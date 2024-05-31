@@ -37,5 +37,86 @@ h part
     <script src="script.js"></script>
 </body>
 </html>
+css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.product-info h2 {
+    margin: 0 0 10px 0;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.quantity-selector button {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.quantity-selector input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.price {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+js
+function updateQuantity(id, change) {
+    const quantityInput = document.getElementById(id);
+    let currentValue = parseInt(quantityInput.value);
+    currentValue = isNaN(currentValue) ? 0 : currentValue;
+    currentValue += change;
+    if (currentValue < 0) {
+        currentValue = 0;
+    }
+    quantityInput.value = currentValue;
+}
 
 
