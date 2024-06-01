@@ -1,104 +1,117 @@
-
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-  <title>Rock, Paper, Scissors Game which is devloped by kavya trivedi</title>
-
+  <title>Rock, Paper, Scissors Game</title>
   <style>
-
     .button {
-
       font-size: 16px;
-
       margin: 10px;
-
       padding: 10px 20px;
-
       cursor: pointer;
-
     }
-
+    .hidden {
+      display: none;
+    }
   </style>
-
 </head>
-
 <body>
+  <h1>Stone, Paper, Scissors Game</h1>
+  <div id="game-mode">
+    <h2>Select Game Mode</h2>
+    <button class="button" id="single-player">Single Player</button>
+    <button class="button" id="two-player">Two Players</button>
+  </div>
 
-  <h1>Rock, Paper, Scissors Game</h1>
+  <div id="player1" class="hidden">
+    <h2>Player 1's Turn</h2>
+    <button class="button" id="stone">Stone</button>
+    <button class="button" id="paper">Paper</button>
+    <button class="button" id="scissors">Scissors</button>
+  </div>
 
-  <button class="button" id="rock">Rock</button>
-
-  <button class="button" id="paper">Paper</button>
-
-  <button class="button" id="scissors">Scissors</button>
+  <div id="player2" class="hidden">
+    <h2>Player 2's Turn</h2>
+    <button class="button" id="stone">Stone</button>
+    <button class="button" id="paper">Paper</button>
+    <button class="button" id="scissors">Scissors</button>
+  </div>
 
   <div id="result"></div>
 
-
   <script>
-
-    const choices = ["rock", "paper", "scissors"];
-
+    const choices = ["stone", "paper", "scissors"];
     const buttons = document.querySelectorAll(".button");
-
     const resultDiv = document.getElementById("result");
 
+    let gameMode = null;
+    let player1Choice = null;
+    let player2Choice = null;
+
+    const gameModeDiv = document.getElementById("game-mode");
+    const player1Div = document.getElementById("player1");
+    const player2Div = document.getElementById("player2");
 
     function computerPlay() {
-
       return choices[Math.floor(Math.random() * 3)];
-
     }
 
-
-    function playRound(playerSelection, computerSelection) {
-
-      if (playerSelection === computerSelection) {
-
+    function playRound(player1Selection, player2Selection) {
+      if (player1Selection === player2Selection) {
         return "It's a tie!";
-
       } else if (
-
-        (playerSelection === "rock" && computerSelection === "scissors") ||
-
-        (playerSelection === "paper" && computerSelection === "rock") ||
-
-        (playerSelection === "scissors" && computerSelection === "paper")
-
+        (player1Selection === "stone" && player2Selection === "scissors") ||
+        (player1Selection === "paper" && player2Selection === "stone") ||
+        (player1Selection === "scissors" && player2Selection === "paper")
       ) {
-
-        return "You win!";
-
+        return "Player 1 wins!";
       } else {
-
-        return "You lose!";
-
+        return "Player 2 wins!";
       }
-
     }
 
-
-    buttons.forEach(button => {
-
-      button.addEventListener("click", () => {
-
-        const playerChoice = button.id;
-
-        const computerChoice = computerPlay();
-
-        const result = playRound(playerChoice, computerChoice);
-
-        resultDiv.textContent = `You chose ${playerChoice}, computer chose ${computerChoice}. ${result}`;
-
-      });
-
+    document.getElementById("single-player").addEventListener("click", () => {
+      gameMode = "single";
+      gameModeDiv.classList.add("hidden");
+      player1Div.classList.remove("hidden");
     });
 
+    document.getElementById("two-player").addEventListener("click", () => {
+      gameMode = "two-player";
+      gameModeDiv.classList.add("hidden");
+      player1Div.classList.remove("hidden");
+    });
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const playerChoice = button.id;
+
+        if (!player1Choice) {
+          player1Choice = playerChoice;
+          if (gameMode === "single") {
+            const computerChoice = computerPlay();
+            const result = playRound(player1Choice, computerChoice);
+            resultDiv.textContent = `You chose ${player1Choice}, computer chose ${computerChoice}. ${result}`;
+
+            // Reset for next round
+            player1Choice = null;
+          } else {
+            player1Div.classList.add("hidden");
+            player2Div.classList.remove("hidden");
+          }
+        } else {
+          player2Choice = playerChoice;
+          const result = playRound(player1Choice, player2Choice);
+          resultDiv.textContent = `Player 1 chose ${player1Choice}, Player 2 chose ${player2Choice}. ${result}`;
+
+          // Reset for next round
+          player1Choice = null;
+          player2Choice = null;
+          player1Div.classList.remove("hidden");
+          player2Div.classList.add("hidden");
+        }
+      });
+    });
   </script>
-
 </body>
-
 </html>
+
