@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rock, Paper, Scissors Game</title>
+  <title>Rock, Paper, Scissors Game Created by Kavya Trivedi</title>
   <style>
     .button {
       font-size: 16px;
@@ -15,7 +15,7 @@
   </style>
 </head>
 <body>
-  <h1>Stone, Paper, Scissors Game</h1>
+  <h1>Stone, Paper, Scissors Game created by KAVYA TRIVEDI</h1>
   <div id="game-mode">
     <h2>Select Game Mode</h2>
     <button class="button" id="single-player">Single Player</button>
@@ -28,7 +28,7 @@
     <button class="button" id="paper">Paper</button>
     <button class="button" id="scissors">Scissors</button>
   </div>
-
+  
   <div id="player2" class="hidden">
     <h2>Player 2's Turn</h2>
     <button class="button" id="stone">Stone</button>
@@ -42,7 +42,7 @@
     const choices = ["stone", "paper", "scissors"];
     const buttons = document.querySelectorAll(".button");
     const resultDiv = document.getElementById("result");
-
+//created by kavya trivedi
     let gameMode = null;
     let player1Choice = null;
     let player2Choice = null;
@@ -54,7 +54,7 @@
     function computerPlay() {
       return choices[Math.floor(Math.random() * 3)];
     }
-
+//created by kavya trivedi
     function playRound(player1Selection, player2Selection) {
       if (player1Selection === player2Selection) {
         return "It's a tie!";
@@ -68,7 +68,7 @@
         return "Player 2 wins!";
       }
     }
-
+//created by kavya trivedi
     document.getElementById("single-player").addEventListener("click", () => {
       gameMode = "single";
       gameModeDiv.classList.add("hidden");
@@ -114,4 +114,5 @@
   </script>
 </body>
 </html>
+
 
