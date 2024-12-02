@@ -1,2 +1,2 @@
 soon writtening some stuff
-learnig advance soon will write
+learnig advance soon will write.
